@@ -1,10 +1,4 @@
-<p>Howdy! Here's a list of awesome computer scientists. Do you know any others? Add to the list yourself.</p>
-
-<form (submit)="addName()">
-  <input [(ngModel)]="newName" name="newName" placeholder="Awesome Computer Scientist">
-  <button type="submit">Add</button>
-</form>
-
-<ul>
-  <li *ngFor="let name of names">{{name}}</li>
-</ul>
+<h1>My First Angular 2 App</h1>
+<div class="grid" [ngGrid]="{'max_cols': 6, 'auto_resize': true}">
+  <div class="grid-item" [ngGridItem]="{'sizex': 2, 'sizey': 3}"></div>
+</div>

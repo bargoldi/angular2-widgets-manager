@@ -1,6 +1,7 @@
-import { join } from 'path';
+import {join} from 'path';
 
-import { SeedConfig } from './seed.config';
+import {SeedConfig} from './seed.config';
+import {ExtendPackages} from './seed.config.interfaces';
 // import { ExtendPackages } from './seed.config.interfaces';
 
 /**
@@ -21,41 +22,31 @@ export class ProjectConfig extends SeedConfig {
     // Add `NPM` third-party libraries to be injected/bundled.
     this.NPM_DEPENDENCIES = [
       ...this.NPM_DEPENDENCIES,
-      // {src: 'jquery/dist/jquery.min.js', inject: 'libs'},
+      // {src: 'angular2-grid/dist/main.js', inject: 'libs'},
       // {src: 'lodash/lodash.min.js', inject: 'libs'},
     ];
 
     // Add `local` third-party libraries to be injected/bundled.
     this.APP_ASSETS = [
       ...this.APP_ASSETS,
+      // {src: `${this.APP_SRC}/angular2-grid/dist/main.js`, inject: true, vendor: false},
       // {src: `${this.APP_SRC}/your-path-to-lib/libs/jquery-ui.js`, inject: true, vendor: false}
+      // {src: `${this.CSS_SRC}/angular2-grid/dist/NgGrid.css`, inject: true, vendor: false}
       // {src: `${this.CSS_SRC}/path-to-lib/test-lib.css`, inject: true, vendor: false},
     ];
 
-    // Add packages (e.g. lodash)
-    // let additionalPackages: ExtendPackages[] = [{
-    //   name: 'lodash',
-    //   path: `${this.APP_BASE}node_modules/lodash/lodash.js`,
-    //   packageMeta: {
-    //     main: 'index.js',
-    //     defaultExtension: 'js'
-    //   }
-    // }];
-    //
-    // or
-    //
-    // let additionalPackages: ExtendPackages[] = [];
-    //
-    // additionalPackages.push({
-    //   name: 'lodash',
-    //   path: `${this.APP_BASE}node_modules/lodash/lodash.js`,
-    //   packageMeta: {
-    //     main: 'index.js',
-    //     defaultExtension: 'js'
-    //   }
-    // });
-    //
-    // this.addPackagesBundles(additionalPackages);
+    let additionalPackages: ExtendPackages[] = [];
+
+    additionalPackages.push({
+      name: 'angular2-grid',
+      path: `${this.APP_BASE}node_modules/angular2-grid/dist/main.js`,
+      packageMeta: {
+        main: 'main.js',
+        defaultExtension: 'js'
+      }
+    });
+
+    this.addPackagesBundles(additionalPackages);
 
     /* Add to or override NPM module configurations: */
     // this.mergeObject(this.PLUGIN_CONFIGS['browser-sync'], { ghostMode: false });

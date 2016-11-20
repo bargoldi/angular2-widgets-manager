@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NameListService } from '../shared/index';
+import {NgGrid, NgGridItem} from 'angular2-grid';
 
 /**
  * This class represents the lazy loaded HomeComponent.
@@ -7,11 +8,11 @@ import { NameListService } from '../shared/index';
 @Component({
   moduleId: module.id,
   selector: 'sd-home',
-  templateUrl: 'home.component.html',
+  templateUrl: 'home.component.html'
   styleUrls: ['home.component.css'],
+  directives: [NgGrid, NgGridItem]
 })
 export class HomeComponent implements OnInit {
-
   newName: string = '';
   errorMessage: string;
   names: any[] = [];
