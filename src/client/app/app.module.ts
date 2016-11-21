@@ -12,7 +12,7 @@ import { HomeModule } from './home/home.module';
 import { SharedModule } from './shared/shared.module';
 
 @NgModule({
-  imports: [NgGridModule, BrowserModule, HttpModule, RouterModule.forRoot(routes), AboutModule, HomeModule, SharedModule.forRoot()],
+  imports: [BrowserModule, HttpModule, RouterModule.forRoot(routes), AboutModule, HomeModule, SharedModule.forRoot(), NgGridModule],
   declarations: [AppComponent],
   providers: [{
     provide: APP_BASE_HREF,

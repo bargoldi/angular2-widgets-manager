@@ -8,7 +8,7 @@ import {NgGrid, NgGridItem} from 'angular2-grid';
 @Component({
   moduleId: module.id,
   selector: 'sd-home',
-  templateUrl: 'home.component.html'
+  templateUrl: 'home.component.html',
   styleUrls: ['home.component.css'],
   directives: [NgGrid, NgGridItem]
 })
