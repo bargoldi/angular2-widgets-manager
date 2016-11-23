@@ -12,8 +12,7 @@ import {
 } from '@angular/http';
 import { MockBackend } from '@angular/http/testing';
 
-import { NameListService } from '../shared/index';
-import { HomeModule } from './home.module';
+import { WidgetsGridModule } from './widgets-grid.module';
 
 export function main() {
   describe('Home component', () => {
@@ -21,10 +20,9 @@ export function main() {
     // Disable old forms
     beforeEach(() => {
       TestBed.configureTestingModule({
-        imports: [FormsModule, RouterModule, HttpModule, HomeModule],
+        imports: [FormsModule, RouterModule, HttpModule, WidgetsGridModule],
         declarations: [TestComponent],
         providers: [
-          NameListService,
           BaseRequestOptions,
           MockBackend,
           {provide: Http, useFactory: function (backend: ConnectionBackend, defaultOptions: BaseRequestOptions) {
@@ -47,7 +45,6 @@ export function main() {
             let homeInstance = fixture.debugElement.children[0].componentInstance;
             let homeDOMEl = fixture.debugElement.children[0].nativeElement;
 
-            expect(homeInstance.nameListService).toEqual(jasmine.any(NameListService));
             expect(homeDOMEl.querySelectorAll('li').length).toEqual(0);
 
             homeInstance.newName = 'Minko';

@@ -1,0 +1,5 @@
+<div class="grid" [ngGrid]="{'max_cols': 6, 'auto_resize': true}">
+  <div *ngFor="let component of components" class="grid-item" [ngGridItem]="{'sizex': 1, 'sizey': 1}">
+    <html-outlet [html]="component"></html-outlet>
+  </div>
+</div>
