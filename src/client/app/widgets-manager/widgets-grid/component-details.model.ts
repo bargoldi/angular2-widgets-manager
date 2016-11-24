@@ -1,7 +1,7 @@
-interface ComponentDetails {
+import { NgGridItemConfig } from 'angular2-grid';
+
+export interface ComponentDetails {
   name: string;
-  positionX: number;
-  positionY: number;
-  width: number;
-  height: number;
+  html: string;
+  gridItemConfig:NgGridItemConfig
 }

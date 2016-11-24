@@ -7,6 +7,7 @@ import { Component } from '@angular/core';
   moduleId: module.id,
   selector: 'demo-2',
   templateUrl: 'demo-2.component.html',
+  styleUrls: ['./demo2-.component.css']
 })
 export class Demo2Component {
 

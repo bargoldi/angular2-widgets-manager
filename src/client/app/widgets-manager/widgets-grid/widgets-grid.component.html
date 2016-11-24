@@ -1,5 +1,13 @@
-<div class="grid" [ngGrid]="{'max_cols': 6, 'auto_resize': true}">
-  <div *ngFor="let component of components" class="grid-item" [ngGridItem]="{'sizex': 1, 'sizey': 1}">
-    <html-outlet [html]="component"></html-outlet>
+<div class="grid" [ngGrid]="gridConfig">
+  <div *ngFor="let componentDetails of componentsDetails" class="grid-item"
+       [ngGridItem]="componentDetails.gridItemConfig"
+       (onDragStart)="onDragStartHandler($event)"
+       (onDrag)="onDragHandler($event)"
+       (onDragStop)="onDragStopHandler($event)"
+       (onResizeStart)="onResizeStartHandler($event)"
+       (onResize)="onResizeHandler($event)"
+       (onResizeStop)="onResizeStopHandler($event)"
+       (onItemChange)="onItemChangeHandler($event)">
+    <html-outlet [html]="componentDetails.html"></html-outlet>
   </div>
 </div>
