@@ -23,7 +23,7 @@ export function createComponentFactory(compiler: Compiler, metadata: Component):
     });
 }
 
-@Directive({selector: 'html-outlet'})
+@Directive({selector: 'component-factory'})
 export class HtmlOutlet {
   @Input() html: string;
   componentRef: ComponentRef<any>;

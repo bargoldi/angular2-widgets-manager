@@ -1,0 +1,11 @@
+.some-div-class {
+  float: left;
+  width: auto;
+  height: 50px;
+  font-size: 35px !important;
+  line-height: 35px !important;
+}
+
+.toolbar {
+  height: 50px;
+}

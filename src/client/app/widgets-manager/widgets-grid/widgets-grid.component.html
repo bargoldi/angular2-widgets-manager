@@ -8,6 +8,6 @@
        (onResize)="onResizeHandler($event)"
        (onResizeStop)="onResizeStopHandler($event)"
        (onItemChange)="onItemChangeHandler($event)">
-    <html-outlet [html]="componentDetails.html"></html-outlet>
+    <component-factory [html]="componentDetails.html"></component-factory>
   </div>
 </div>

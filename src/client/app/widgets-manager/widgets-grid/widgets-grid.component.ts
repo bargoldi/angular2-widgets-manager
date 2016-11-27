@@ -14,7 +14,10 @@ import { ComponentDetails } from './component-details.model';
   directives: [NgGrid, NgGridItem]
 })
 export class WidgetsGridComponent implements OnInit {
-
+  /**
+   * NgGrid configuration
+   * @type NgGridConfig
+   */
   @Input() gridConfig: NgGridConfig = {'max_cols': 6, 'auto_resize': true};
 
   /**
