@@ -32,7 +32,7 @@ export class WidgetsDemoService {
       html: '<section style="float:left; height:50px; width:100%;"><widget-toolbar-demo [id]="' + WidgetsDemoService.id + '" (onRemove)="removeElement(id)"></widget-toolbar-demo></section><section style="float:left; height:50px; width:100%;"><demo-2></demo-2></section>'
     });
 
-    setInterval(()=> {
+    let interval = setInterval(()=> {
       WidgetsDemoService.id++;
 
       this.componentsDetails.push(<ComponentDetails>{
@@ -44,6 +44,10 @@ export class WidgetsDemoService {
         name: 'Demo2',
         html: '<section style="float:left; height:50px; width:100%;"><widget-toolbar-demo [id]="' + WidgetsDemoService.id + '" (onRemove)="removeElement(id)"></widget-toolbar-demo></section><section style="float:left; height:50px; width:100%;"><demo-2></demo-2></section>'
       });
+
+      if(WidgetsDemoService.id === 6){
+        window.clearInterval(interval);
+      }
     }, 3000);
   }
 
