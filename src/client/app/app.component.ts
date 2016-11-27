@@ -6,6 +6,7 @@ import { Demo1Component } from './demo/demo-1/demo-1.component';
 import { Demo2Component } from './demo/demo-2/demo-2.component';
 import { WidgetsGridComponent } from './widgets-manager/widgets-grid/widgets-grid.component';
 import { WidgetsDemoService } from "./demo/widgets-demo-service/widgets-demo.service";
+import { NgGridConfig } from "angular2-grid";
 
 /**
  * This class represents the main application component.
@@ -19,8 +20,7 @@ import { WidgetsDemoService } from "./demo/widgets-demo-service/widgets-demo.ser
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  gridConfig = {margins: [2], cascade: 'left'};
-  gridItemConfig = {};
+  gridConfig = <NgGridConfig>{margins: [2], cascade: 'left', max_rows: 2};
 
   constructor(public widgetsDemoService: WidgetsDemoService) {
     console.log('Environment config', Config);

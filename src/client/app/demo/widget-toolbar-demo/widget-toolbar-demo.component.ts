@@ -18,7 +18,7 @@ export class WidgetToolbarDemoComponent {
   constructor(private widgetsDemoService: WidgetsDemoService) {
   }
 
-  DoSomething() {
+  doSomething() {
     console.log('Doing something');
   }
 
