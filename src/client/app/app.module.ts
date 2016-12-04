@@ -4,13 +4,11 @@ import { APP_BASE_HREF } from '@angular/common';
 import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
-import { NgGridModule } from 'angular2-grid';
-import { WidgetsGridModule } from './widgets-manager/widgets-grid/widgets-grid.module';
 import { SharedModule } from './shared/shared.module';
-import { WidgetsGridModule } from './widgets-manager/widgets-grid/widgets-grid.module';
+import { WidgetsManagerModule } from './widgets-manager/widgets-manager.module';
 
 @NgModule({
-  imports: [BrowserModule, HttpModule, WidgetsGridModule, SharedModule.forRoot(), NgGridModule, WidgetsGridModule],
+  imports: [BrowserModule, HttpModule, SharedModule.forRoot(), WidgetsManagerModule.forRoot()],
   declarations: [AppComponent],
   providers: [{
     provide: APP_BASE_HREF,
