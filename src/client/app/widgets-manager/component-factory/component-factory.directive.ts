@@ -5,7 +5,7 @@ import {
 import { RouterModule }  from '@angular/router';
 import { CommonModule } from '@angular/common';
 
-import { DemoComponentsModule } from '../../demo/demo-components.module';
+import { WidgetsManagerService } from '../widgets-manager.service';
 
 export function createComponentFactory(compiler: Compiler, metadata: Component): Promise<ComponentFactory<any>> {
   class DynamicComponent {
@@ -13,7 +13,14 @@ export function createComponentFactory(compiler: Compiler, metadata: Component):
 
   let decoratedComponent = Component(metadata)(DynamicComponent);
 
-  @NgModule({imports: [CommonModule, RouterModule, DemoComponentsModule], declarations: [decoratedComponent]})
+  if (!WidgetsManagerService.widgetsModule) {
+    throw new Error('Widgets module should be provided');
+  }
+
+  @NgModule({
+    imports: [CommonModule, RouterModule, WidgetsManagerService.widgetsModule],
+    declarations: [decoratedComponent]
+  })
   class DynamicHtmlModule {
   }
 

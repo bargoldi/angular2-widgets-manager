@@ -6,6 +6,8 @@ import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 import { SharedModule } from './shared/shared.module';
 import { WidgetsManagerModule } from './widgets-manager/widgets-manager.module';
+import { DemoComponentsModule } from './demo/demo-components.module';
+import { WidgetsManagerService } from './widgets-manager/widgets-manager.service';
 
 @NgModule({
   imports: [BrowserModule, HttpModule, SharedModule.forRoot(), WidgetsManagerModule.forRoot()],
@@ -15,8 +17,10 @@ import { WidgetsManagerModule } from './widgets-manager/widgets-manager.module';
     useValue: '<%= APP_BASE %>'
   }],
   bootstrap: [AppComponent]
-
 })
 
 export class AppModule {
+  constructor() {
+    WidgetsManagerService.provideWidgetsModule(DemoComponentsModule);
+  }
 }

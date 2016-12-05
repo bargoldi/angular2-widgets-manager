@@ -23,4 +23,8 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
   }
+
+  boNeadken(mashu: any) {
+    console.log(mashu);
+  }
 }

@@ -1,10 +1,10 @@
-import { Injectable } from "@angular/core";
+import { Injectable, NgModule, ModuleWithProviders } from "@angular/core";
 
 @Injectable()
 export class WidgetsManagerService {
-  static modulePath = '';
+  static widgetsModule: NgModule | ModuleWithProviders | any;
 
-  static provideModulePath(modulePath: string) {
-    WidgetsManagerService.modulePath = modulePath;
+  static provideWidgetsModule(widgetsModule: NgModule | ModuleWithProviders) {
+    WidgetsManagerService.widgetsModule = widgetsModule;
   }
 }

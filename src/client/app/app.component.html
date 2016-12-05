@@ -1,1 +1,3 @@
-<widgets-grid [componentsDetails]="widgetsDemoService.componentsDetails" [gridConfig]="gridConfig"></widgets-grid>
+<input type="text" ngModel="filterComponents">
+<widgets-grid (onDrag)="boNeadken($event)" [componentsDetails]="widgetsDemoService.componentsDetails"
+              [gridConfig]="gridConfig"></widgets-grid>
