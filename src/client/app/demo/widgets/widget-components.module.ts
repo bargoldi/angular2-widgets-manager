@@ -2,9 +2,9 @@ import { NgModule, ModuleWithProviders, CUSTOM_ELEMENTS_SCHEMA } from '@angular/
 
 import { Widget1ComponentModule } from './widget-1/widget-1.module';
 import { Widget2ComponentModule } from './widget-2/widget-2.module';
-import { WidgetToolbarDemoModule } from './widget-toolbar-demo/widget-toolbar-demo.module';
-import { WidgetsDemoService } from './widgets-demo-service/widgets-demo.service';
-import {WidgetsPipeModule} from './../widgets-pipe/widgets-pipe.module';
+import { WidgetToolbarDemoModule } from './shared-widget/widget-toolbar-demo/widget-toolbar-demo.module';
+import { WidgetsPipeModule } from './../widgets-pipe/widgets-pipe.module';
+import { SharedWidgetService } from './shared-widget/shared-widget-service/shared-widget.service';
 
 /**
  * Do not specify providers for modules that might be imported by a lazy loaded module.
@@ -12,7 +12,7 @@ import {WidgetsPipeModule} from './../widgets-pipe/widgets-pipe.module';
 
 @NgModule({
   exports: [Widget1ComponentModule, Widget2ComponentModule, WidgetToolbarDemoModule],
-  providers: [WidgetsDemoService],
+  providers: [SharedWidgetService],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class WidgetComponentsModule {

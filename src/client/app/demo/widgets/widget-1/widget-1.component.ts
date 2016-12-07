@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {SharedWidgetService} from '../shared-widget/shared-widget-service/shared-widget.service';
 
 /**
  * This class represents the main application component.
@@ -10,5 +11,6 @@ import { Component } from '@angular/core';
   styleUrls: ['widget-1.component.css']
 })
 export class Widget1Component {
-
+  constructor(public widgetsSharedService:SharedWidgetService) {
+  }
 }

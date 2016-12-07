@@ -11,7 +11,7 @@ import { WidgetsManagerService } from './widgets-manager/widgets-manager.service
 import {WidgetsPipeModule} from './demo/widgets-pipe/widgets-pipe.module';
 
 @NgModule({
-  imports: [BrowserModule, HttpModule, SharedModule.forRoot(), WidgetsManagerModule.forRoot(), WidgetsPipeModule],
+  imports: [BrowserModule, HttpModule, SharedModule.forRoot(), WidgetsManagerModule.forRoot(), WidgetsPipeModule, WidgetComponentsModule.forRoot()],
   declarations: [AppComponent],
   providers: [{
     provide: APP_BASE_HREF,
@@ -22,6 +22,6 @@ import {WidgetsPipeModule} from './demo/widgets-pipe/widgets-pipe.module';
 
 export class AppModule {
   constructor() {
-    WidgetsManagerService.provideWidgetsModule(WidgetComponentsModule);
+    WidgetsManagerService.provideWidgetsModule(WidgetComponentsModule.forRoot());
   }
 }
