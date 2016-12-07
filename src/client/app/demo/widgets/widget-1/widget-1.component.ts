@@ -5,10 +5,10 @@ import { Component } from '@angular/core';
  */
 @Component({
   moduleId: module.id,
-  selector: 'demo-2',
-  templateUrl: 'demo-2.component.html',
-  styleUrls: ['./demo2-.component.css']
+  selector: 'widget-1',
+  templateUrl: 'widget-1.component.html',
+  styleUrls: ['widget-1.component.css']
 })
-export class Demo2Component {
+export class Widget1Component {
 
 }

@@ -6,11 +6,12 @@ import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 import { SharedModule } from './shared/shared.module';
 import { WidgetsManagerModule } from './widgets-manager/widgets-manager.module';
-import { DemoComponentsModule } from './demo/demo-components.module';
+import { WidgetComponentsModule } from './demo/widgets/widget-components.module';
 import { WidgetsManagerService } from './widgets-manager/widgets-manager.service';
+import {WidgetsPipeModule} from './demo/widgets-pipe/widgets-pipe.module';
 
 @NgModule({
-  imports: [BrowserModule, HttpModule, SharedModule.forRoot(), WidgetsManagerModule.forRoot()],
+  imports: [BrowserModule, HttpModule, SharedModule.forRoot(), WidgetsManagerModule.forRoot(), WidgetsPipeModule],
   declarations: [AppComponent],
   providers: [{
     provide: APP_BASE_HREF,
@@ -21,6 +22,6 @@ import { WidgetsManagerService } from './widgets-manager/widgets-manager.service
 
 export class AppModule {
   constructor() {
-    WidgetsManagerService.provideWidgetsModule(DemoComponentsModule);
+    WidgetsManagerService.provideWidgetsModule(WidgetComponentsModule);
   }
 }

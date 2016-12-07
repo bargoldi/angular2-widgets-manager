@@ -3,9 +3,9 @@ import { ComponentDetails } from "../../widgets-manager/widgets-grid/component-d
 
 @Injectable()
 export class WidgetsDemoService {
-  componentsDetails: Array<ComponentDetails> = [];
+  componentsDetails:Array<ComponentDetails> = [];
 
-  public static id: number = 0;
+  public static id:number = 0;
 
   constructor() {
     WidgetsDemoService.id++;
@@ -18,7 +18,7 @@ export class WidgetsDemoService {
       },
       id: WidgetsDemoService.id,
       name: 'Demo1',
-      html: '<section style="float:left; height:50px; width:100%;"><widget-toolbar-demo [id]="' + WidgetsDemoService.id + '" (onRemove)="removeElement(id)"></widget-toolbar-demo></section><section style="float:left; height:50px; width:100%;"><demo-1></demo-1></section>'
+      html: '<section style="float:left; height:50px; width:100%;"><widget-toolbar-demo [id]="' + WidgetsDemoService.id + '" (onRemove)="removeElement(id)"></widget-toolbar-demo></section><section style="float:left; height:50px; width:100%;"><widget-1></widget-1></section>'
     });
 
     WidgetsDemoService.id++;
@@ -29,7 +29,7 @@ export class WidgetsDemoService {
       },
       id: WidgetsDemoService.id,
       name: 'Demo2',
-      html: '<section style="float:left; height:50px; width:100%;"><widget-toolbar-demo [id]="' + WidgetsDemoService.id + '" (onRemove)="removeElement(id)"></widget-toolbar-demo></section><section style="float:left; height:50px; width:100%;"><demo-2></demo-2></section>'
+      html: '<section style="float:left; height:50px; width:100%;"><widget-toolbar-demo [id]="' + WidgetsDemoService.id + '" (onRemove)="removeElement(id)"></widget-toolbar-demo></section><section style="float:left; height:50px; width:100%;"><widget-2></widget-2></section>'
     });
 
     let interval = setInterval(() => {
@@ -42,7 +42,7 @@ export class WidgetsDemoService {
         },
         id: WidgetsDemoService.id,
         name: 'Demo2',
-        html: '<section style="float:left; height:50px; width:100%;"><widget-toolbar-demo [id]="' + WidgetsDemoService.id + '" (onRemove)="removeElement(id)"></widget-toolbar-demo></section><section style="float:left; height:50px; width:100%;"><demo-2></demo-2></section>'
+        html: '<section style="float:left; height:50px; width:100%;"><widget-toolbar-demo [id]="' + WidgetsDemoService.id + '" (onRemove)="removeElement(id)"></widget-toolbar-demo></section><section style="float:left; height:50px; width:100%;"><widget-2></widget-2></section>'
       });
 
       if (WidgetsDemoService.id === 6) {
@@ -51,7 +51,7 @@ export class WidgetsDemoService {
     }, 3000);
   }
 
-  removeElement(id: any) {
+  removeElement(id:any) {
     this.componentsDetails = this.componentsDetails.filter((componentDetails) => {
       return componentDetails.id !== id;
     })
