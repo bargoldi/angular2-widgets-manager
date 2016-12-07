@@ -1,3 +1,4 @@
-<input type="text" ngModel="filterComponents">
-<widgets-grid (onDrag)="boNeadken($event)" [componentsDetails]="widgetsDemoService.componentsDetails"
+<span class="filter-by-comp-name">Filter components by name:</span><input type="text" [(ngModel)]="filterComponents">
+<widgets-grid (onDrag)="boNeadken($event)"
+              [componentsDetails]="widgetsDemoService.componentsDetails | widgets:filterComponents"
               [gridConfig]="gridConfig"></widgets-grid>
