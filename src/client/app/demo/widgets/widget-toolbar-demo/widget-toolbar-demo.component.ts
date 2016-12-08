@@ -1,8 +1,9 @@
-import { Component, Output, EventEmitter, Input } from '@angular/core';
-import { WidgetsDemoService } from "../widgets-demo-service/widgets-demo.service";
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+
+import { WidgetsDetailsService } from '../../widgets-details-service/widgets-details.service';
 
 /**
- * This class represents the main application component.
+ * This class represents the widgets toolbar component used for demo.
  */
 @Component({
   moduleId: module.id,
@@ -12,10 +13,11 @@ import { WidgetsDemoService } from "../widgets-demo-service/widgets-demo.service
 })
 export class WidgetToolbarDemoComponent {
   @Input() id: string|number;
+  @Input() removeHandler: Function;
 
-  @Output() onRemove = new EventEmitter<any>();
+  @Output() onRemove = new EventEmitter<string|number>();
 
-  constructor(private widgetsDemoService: WidgetsDemoService) {
+  constructor(private widgetsDetailsService: WidgetsDetailsService) {
   }
 
   doSomething() {
@@ -23,6 +25,7 @@ export class WidgetToolbarDemoComponent {
   }
 
   remove() {
-    this.widgetsDemoService.removeElement(this.id);
+    this.widgetsDetailsService.removeElement(this.id);
+    this.onRemove.emit(this.id);
   }
 }

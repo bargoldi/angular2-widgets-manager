@@ -1,6 +1,6 @@
-import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 
-import {HtmlOutlet} from './component-factory.directive';
+import { HtmlOutlet } from './component-factory.directive';
 
 @NgModule({
   declarations: [HtmlOutlet],

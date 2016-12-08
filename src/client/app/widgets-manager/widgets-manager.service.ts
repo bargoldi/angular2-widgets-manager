@@ -1,4 +1,4 @@
-import { Injectable, NgModule, ModuleWithProviders } from "@angular/core";
+import { Injectable, ModuleWithProviders, NgModule } from '@angular/core';
 
 @Injectable()
 export class WidgetsManagerService {

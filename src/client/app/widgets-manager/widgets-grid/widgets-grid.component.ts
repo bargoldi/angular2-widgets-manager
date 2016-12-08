@@ -1,5 +1,5 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { NgGrid, NgGridItem, NgGridConfig } from 'angular2-grid';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { NgGridConfig, NgGridItem } from 'angular2-grid';
 
 import { ComponentDetails } from './component-details.model';
 
@@ -10,8 +10,7 @@ import { ComponentDetails } from './component-details.model';
   moduleId: module.id,
   selector: 'widgets-grid',
   templateUrl: 'widgets-grid.component.html',
-  styleUrls: ['widgets-grid.component.css'],
-  directives: [NgGrid, NgGridItem]
+  styleUrls: ['widgets-grid.component.css']
 })
 export class WidgetsGridComponent implements OnInit {
   /**

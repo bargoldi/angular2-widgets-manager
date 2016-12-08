@@ -1,6 +1,14 @@
 import {
-  Component, Directive, NgModule, Input, ViewContainerRef, Compiler, ComponentFactory,
-  ModuleWithComponentFactories, ComponentRef, ReflectiveInjector
+  Compiler,
+  Component,
+  ComponentFactory,
+  ComponentRef,
+  Directive,
+  Input,
+  ModuleWithComponentFactories,
+  NgModule,
+  ReflectiveInjector,
+  ViewContainerRef
 } from '@angular/core';
 import { RouterModule }  from '@angular/router';
 import { CommonModule } from '@angular/common';
@@ -26,7 +34,7 @@ export function createComponentFactory(compiler: Compiler, metadata: Component):
 
   return compiler.compileModuleAndAllComponentsAsync(DynamicHtmlModule)
     .then((moduleWithComponentFactory: ModuleWithComponentFactories<any>) => {
-      return moduleWithComponentFactory.componentFactories.find(x => x.componentType === decoratedComponent);
+      return moduleWithComponentFactory.componentFactories.find(x => x.componentType === <any>decoratedComponent);
     });
 }
 

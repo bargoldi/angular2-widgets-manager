@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Config } from './shared/index';
 import { NgGridConfig } from 'angular2-grid';
 
-import { WidgetsDemoService } from './demo/widgets/widgets-demo-service/widgets-demo.service';
-import {WidgetsPipe} from './demo/widgets-pipe/widgets.pipe';
+import { Config } from './shared/index';
+import { WidgetsDetailsService } from './demo/widgets-details-service/widgets-details.service';
+import { SharedWidgetService } from './demo/widgets/shared-widget.service';
 
 /**
  * This class represents the main application component.
@@ -12,20 +12,24 @@ import {WidgetsPipe} from './demo/widgets-pipe/widgets.pipe';
   moduleId: module.id,
   selector: 'sd-app',
   templateUrl: 'app.component.html',
-  providers: [WidgetsDemoService],
-  pipes: [WidgetsPipe]
+  providers: [WidgetsDetailsService, SharedWidgetService]
 })
 export class AppComponent implements OnInit {
   gridConfig = <NgGridConfig>{margins: [2], cascade: 'left', max_rows: 2};
 
-  constructor(public widgetsDemoService:WidgetsDemoService) {
+  constructor(public widgetsDemoService: WidgetsDetailsService, public sharedWidgetsService: SharedWidgetService) {
     console.log('Environment config', Config);
+
+    setTimeout(()=> {
+      sharedWidgetsService.students.pop();
+      console.log('Removed a student after 5 sec. to show shared service hierarchy');
+    }, 5000);
   }
 
-  ngOnInit():void {
+  ngOnInit(): void {
   }
 
-  boNeadken(mashu:any) {
+  doSomethingOnDragStart(mashu: any) {
     console.log(mashu);
   }
 }
