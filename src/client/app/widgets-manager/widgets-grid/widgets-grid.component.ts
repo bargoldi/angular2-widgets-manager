@@ -10,8 +10,7 @@ import { ComponentDetails } from './component-details.model';
   moduleId: module.id,
   selector: 'widgets-grid',
   templateUrl: 'widgets-grid.component.html',
-  styleUrls: ['widgets-grid.component.css'],
-  directives: [NgGrid, NgGridItem]
+  styleUrls: ['widgets-grid.component.css']
 })
 export class WidgetsGridComponent implements OnInit {
   /**

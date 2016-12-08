@@ -13,9 +13,7 @@ import {SharedWidgetService} from './demo/widgets/shared-widget/shared-widget-se
   moduleId: module.id,
   selector: 'sd-app',
   templateUrl: 'app.component.html',
-  providers: [WidgetsDetailsService, SharedWidgetService],
-  pipes: [WidgetsPipe]
-})
+  providers: [WidgetsDetailsService, SharedWidgetService]})
 export class AppComponent implements OnInit {
   gridConfig = <NgGridConfig>{margins: [2], cascade: 'left', max_rows: 2};
 
