@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {SharedWidgetService} from '../shared-widget/shared-widget-service/shared-widget.service';
+import {SharedWidgetService} from '../shared-widget.service';
 
 /**
  * This class represents the main application component.

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 
 @Injectable()
 export class SharedWidgetService {
-  public students:any[] = [
+  public students: any[] = [
     {
       name: 'something1',
       number: 111
