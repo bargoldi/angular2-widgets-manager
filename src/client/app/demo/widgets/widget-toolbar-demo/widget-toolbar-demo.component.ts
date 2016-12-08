@@ -1,8 +1,9 @@
-import {Component, Output, EventEmitter, Input} from '@angular/core';
-import {WidgetsDetailsService} from "../widgets-details-service/widgets-details.service";
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+
+import { WidgetsDetailsService } from '../../widgets-details-service/widgets-details.service';
 
 /**
- * This class represents the main application component.
+ * This class represents the widgets toolbar component used for demo.
  */
 @Component({
   moduleId: module.id,

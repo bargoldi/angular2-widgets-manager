@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+
 import { ComponentDetails } from '../../widgets-manager/widgets-grid/component-details.model';
 
 @Injectable()
@@ -32,7 +33,7 @@ export class WidgetsDetailsService {
       html: '<section style="float:left; height:50px; width:100%;"><widget-toolbar-demo [id]="' + WidgetsDetailsService.id + '"></widget-toolbar-demo></section><section style="float:left; height:50px; width:100%;"><widget-2></widget-2></section>'
     });
 
-    let interval = setInterval(() => {
+    let interval = window.setInterval(() => {
       WidgetsDetailsService.id++;
 
       this.componentsDetails.push(<ComponentDetails>{
@@ -46,7 +47,7 @@ export class WidgetsDetailsService {
       });
 
       if (WidgetsDetailsService.id === 6) {
-        clearInterval(interval);
+        window.clearInterval(interval);
       }
     }, 3000);
   }

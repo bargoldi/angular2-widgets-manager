@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Config } from './shared/index';
 import { NgGridConfig } from 'angular2-grid';
 
+import { Config } from './shared/index';
 import { WidgetsDetailsService } from './demo/widgets-details-service/widgets-details.service';
-import { WidgetsPipe } from './demo/widgets-pipe/widgets.pipe';
 import { SharedWidgetService } from './demo/widgets/shared-widget.service';
 
 /**
