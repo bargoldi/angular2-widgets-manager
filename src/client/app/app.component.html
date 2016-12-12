@@ -1,4 +1,5 @@
-<span class="filter-by-comp-name">Filter components by name:</span><input type="text" [(ngModel)]="filterComponents">
+<button (click)="toggleGrid($event)">Toggle Grid</button><span class="filter-by-comp-name">Filter components by name:</span><input
+  type="text" [(ngModel)]="filterComponents">
 <widgets-grid (onDragStart)="doSomethingOnDragStart($event)"
               [componentsDetails]="widgetsDemoService.componentsDetails | widgets:filterComponents"
               [gridConfig]="gridConfig"></widgets-grid>

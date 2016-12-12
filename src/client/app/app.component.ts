@@ -29,7 +29,14 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  doSomethingOnDragStart(mashu: any) {
-    console.log(mashu);
+  doSomethingOnDragStart(something: any) {
+    console.log(something);
+  }
+
+  toggleGrid() {
+    this.gridConfig.draggable = !this.gridConfig.draggable;
+    this.gridConfig.resizable = !this.gridConfig.resizable;
+
+    console.log(this.widgetsDemoService.componentsDetails);
   }
 }
