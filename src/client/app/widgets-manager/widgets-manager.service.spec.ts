@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, NgModule, ModuleWithProviders} from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import {
   async
@@ -11,32 +11,17 @@ import {
 import {CommonModule} from '@angular/common';
 
 import { MockBackend } from '@angular/http/testing';
-import { WidgetsGridComponent } from './widgets-grid.component';
+import { WidgetsManagerService } from './widgets-manager.service';
 import * as TypeMoq from 'typemoq';
 
-import { WidgetsGridModule } from './widgets-grid.module';
+import { WidgetsManagerModule } from './widgets-manager.module';
 
 export function main() {
-  describe('Widgets Grid component', () => {
-    beforeEach(() => {
-      TestBed.configureTestingModule({
-        imports: [CommonModule, WidgetsGridModule],
-        declarations: [TestComponent],
-        providers: [
-          BaseRequestOptions,
-          MockBackend,
-          {provide: Http, useFactory: function (backend: ConnectionBackend, defaultOptions: BaseRequestOptions) {
-              return new Http(backend, defaultOptions);
-            },
-            deps: [MockBackend, BaseRequestOptions]
-          },
-        ]
-      });
-    });
-
-    it('should work', () => {
-      // let mock: TypeMoq.IMock<Bar> = TypeMoq.Mock.ofType(Bar);
-      expect(2).toBe(2);
+  describe('WidgetsManagerService', () => {
+    it('provideWidgetsModule should set the module', () => {
+      let someModule: TypeMoq.IMock<NgModule> = TypeMoq.Mock.ofType(NgModule);
+      WidgetsManagerService.provideWidgetsModule(someModule);
+      expect(WidgetsManagerService.widgetsModule).toBe(someModule);
 
       // let homeInstance = fixture.debugElement.children[0].componentInstance;
       // let homeDOMEl = fixture.debugElement.children[0].nativeElement;
