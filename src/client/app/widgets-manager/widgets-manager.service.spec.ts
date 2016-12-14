@@ -1,20 +1,7 @@
-import {Component, NgModule, ModuleWithProviders} from '@angular/core';
-import { TestBed } from '@angular/core/testing';
-import {
-  async
-} from '@angular/core/testing';
-import {
-  BaseRequestOptions,
-  ConnectionBackend,
-  Http, HttpModule
-} from '@angular/http';
-import {CommonModule} from '@angular/common';
-
-import { MockBackend } from '@angular/http/testing';
+import { NgModule } from '@angular/core';
 import { WidgetsManagerService } from './widgets-manager.service';
-import * as TypeMoq from 'typemoq';
 
-import { WidgetsManagerModule } from './widgets-manager.module';
+import * as TypeMoq from 'typemoq';
 
 export function main() {
   describe('WidgetsManagerService', () => {
@@ -23,28 +10,7 @@ export function main() {
       WidgetsManagerService.provideWidgetsModule(someModule);
       expect(WidgetsManagerService.widgetsModule).toBe(someModule);
 
-      // let homeInstance = fixture.debugElement.children[0].componentInstance;
-      // let homeDOMEl = fixture.debugElement.children[0].nativeElement;
-      //
-      // expect(homeDOMEl.querySelectorAll('li').length).toEqual(0);
-      //
-      // homeInstance.newName = 'Minko';
-      // homeInstance.addName();
-      //
-      // fixture.detectChanges();
-      //
-      // expect(homeDOMEl.querySelectorAll('li').length).toEqual(1);
-      // expect(homeDOMEl.querySelectorAll('li')[0].textContent).toEqual('Minko');
-      // });
-      //
-      // }));
-      // });
+      WidgetsManagerService.widgetsModule = undefined;
     })
   });
 }
-
-@Component({
-  selector: 'test-cmp',
-  template: '<widgets-grid></widgets-grid>'
-})
-class TestComponent { }
