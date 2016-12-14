@@ -1,7 +1,7 @@
 import {join} from 'path';
 
-import {SeedConfig} from './seed.config';
-import {ExtendPackages} from './seed.config.interfaces';
+import { SeedConfig } from './seed.config';
+import { ExtendPackages } from './seed.config.interfaces';
 // import { ExtendPackages } from './seed.config.interfaces';
 
 /**
@@ -39,11 +39,7 @@ export class ProjectConfig extends SeedConfig {
 
     additionalPackages.push({
       name: 'angular2-grid',
-      path: `${this.APP_BASE}node_modules/angular2-grid/dist/main.js`,
-      packageMeta: {
-        main: 'main.js',
-        defaultExtension: 'js'
-      }
+      path: `${this.APP_BASE}node_modules/angular2-grid/dist/main.js`
     });
 
     this.addPackagesBundles(additionalPackages);

@@ -4,20 +4,18 @@ import {
   async
 } from '@angular/core/testing';
 import {
-  BaseRequestOptions,
-  ConnectionBackend,
-  Http, HttpModule
+  BaseRequestOptions
 } from '@angular/http';
-import {CommonModule} from '@angular/common';
+import { CommonModule } from '@angular/common';
 
 import { MockBackend } from '@angular/http/testing';
 import { WidgetsGridComponent } from './widgets-grid.component';
-import * as TypeMoq from 'typemoq';
 
 import { WidgetsGridModule } from './widgets-grid.module';
+import { ComponentDetails } from "./component-details.model";
 
 export function main() {
-  describe('Widgets Grid component', () => {
+  describe('WidgetsGridComponent', () => {
     beforeEach(() => {
       TestBed.configureTestingModule({
         imports: [CommonModule, WidgetsGridModule],
@@ -25,36 +23,39 @@ export function main() {
         providers: [
           BaseRequestOptions,
           MockBackend,
-          {provide: Http, useFactory: function (backend: ConnectionBackend, defaultOptions: BaseRequestOptions) {
-              return new Http(backend, defaultOptions);
-            },
+          {
             deps: [MockBackend, BaseRequestOptions]
           },
         ]
       });
     });
 
-    it('should work', () => {
-      // let mock: TypeMoq.IMock<Bar> = TypeMoq.Mock.ofType(Bar);
-      expect(2).toBe(2);
+    it('Should work', async(() => {
+      TestBed
+        .compileComponents()
+        .then(() => {
+          let fixture = TestBed.createComponent(TestComponent);
+          let widgetsGridComponent: WidgetsGridComponent = fixture.debugElement.children[0].componentInstance;
+          let widgetsGridDOMElement = fixture.debugElement.children[0].nativeElement;
 
-      // let homeInstance = fixture.debugElement.children[0].componentInstance;
-      // let homeDOMEl = fixture.debugElement.children[0].nativeElement;
-      //
-      // expect(homeDOMEl.querySelectorAll('li').length).toEqual(0);
-      //
-      // homeInstance.newName = 'Minko';
-      // homeInstance.addName();
-      //
-      // fixture.detectChanges();
-      //
-      // expect(homeDOMEl.querySelectorAll('li').length).toEqual(1);
-      // expect(homeDOMEl.querySelectorAll('li')[0].textContent).toEqual('Minko');
-      // });
-      //
-      // }));
-      // });
-    })
+          expect(widgetsGridDOMElement.querySelectorAll('li').length).toEqual(0);
+
+          widgetsGridComponent.componentsDetails = [<ComponentDetails>{
+            gridItemConfig: {
+              sizex: 2,
+              sizey: 1,
+              fixed: true
+            },
+            id: 1,
+            name: 'Demo1',
+            html: '<widget-1></widget-1>'
+          }];
+
+          fixture.detectChanges();
+
+          expect(widgetsGridDOMElement.querySelectorAll('component-factory').length).toEqual(1);
+        });
+    }));
   });
 }
 
@@ -62,4 +63,5 @@ export function main() {
   selector: 'test-cmp',
   template: '<widgets-grid></widgets-grid>'
 })
-class TestComponent { }
+class TestComponent {
+}
