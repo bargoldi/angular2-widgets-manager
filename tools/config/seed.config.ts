@@ -354,6 +354,9 @@ export class SeedConfig {
         'node_modules/@angular/platform-browser-dynamic/bundles/platform-browser-dynamic-testing.umd.js',
       '@angular/router/testing': 'node_modules/@angular/router/bundles/router-testing.umd.js',
 
+      'lodash': 'node_modules/lodash/lodash.js',
+      'typemoq': 'node_modules/typemoq/dist/typemoq.js',
+
       'app/*': '/app/*',
       // For test config
       'dist/dev/*': '/base/dist/dev/*',

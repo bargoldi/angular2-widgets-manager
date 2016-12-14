@@ -15,7 +15,7 @@ module.exports = function (config) {
 
     // frameworks to use
     // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
-    frameworks: ['jasmine'],
+    frameworks: ['browserify', 'jasmine'],
 
 
     // list of files / patterns to load in the browser
@@ -52,6 +52,11 @@ module.exports = function (config) {
       { pattern: 'dist/dev/**/*.css', included: false, watched: true, served: true },
       { pattern: 'node_modules/systemjs/dist/system-polyfills.js', included: false, watched: false }, // PhantomJS2 (and possibly others) might require it
 
+      { pattern: 'node_modules/angular2-grid/dist/main.js', included: true, watched: true, served: true },
+
+      { pattern: 'node_modules/lodash/lodash.js', included: true, watched: true, served: true },
+      { pattern: 'node_modules/typemoq/dist/typemoq.js', included: true, watched: true, served: true },
+
       // suppress annoying 404 warnings for resources, images, etc.
       { pattern: 'dist/dev/assets/**/*', watched: false, included: false, served: true },
 
@@ -73,6 +78,13 @@ module.exports = function (config) {
 
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
+    preprocessors: {
+      'node_modules/angular2-grid/dist/*': [ 'browserify' ]
+    },
+
+    browserify: {
+      debug: true
+    },
 
     // test results reporter to use
     // possible values: 'dots', 'progress'
