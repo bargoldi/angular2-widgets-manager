@@ -1,147 +1,84 @@
 // Karma configuration
-// Generated on Wed Jul 15 2015 09:44:02 GMT+0200 (Romance Daylight Time)
-'use strict';
+// Generated on Fri Sep 18 2015 20:03:51 GMT+0000 (UTC)
 
-var argv = require('yargs').argv;
-var minimatch = require("minimatch");
+module.exports = function(config) {
+    config.set({
 
+        // base path that will be used to resolve all patterns (eg. files, exclude)
+        basePath: '',
 
-module.exports = function (config) {
-  config.set({
+        // frameworks to use
+        // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
+        frameworks: ['jasmine'],
 
-    // base path that will be used to resolve all patterns (eg. files, exclude)
-    basePath: './',
-
-
-    // frameworks to use
-    // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
-    frameworks: ['browserify', 'jasmine'],
-
-
-    // list of files / patterns to load in the browser
-    files: [
-      // Polyfills.
-      'node_modules/core-js/client/shim.min.js',
-      'node_modules/intl/dist/Intl.min.js',
-
-      'node_modules/traceur/bin/traceur.js',
-
-      // System.js for module loading
-      'node_modules/systemjs/dist/system.src.js',
-
-      // Zone.js dependencies
-      'node_modules/zone.js/dist/zone.js',
-      'node_modules/zone.js/dist/long-stack-trace-zone.js',
-      'node_modules/zone.js/dist/async-test.js',
-      'node_modules/zone.js/dist/fake-async-test.js',
-      'node_modules/zone.js/dist/sync-test.js',
-      'node_modules/zone.js/dist/proxy.js',
-      'node_modules/zone.js/dist/jasmine-patch.js',
-
-      // RxJs.
-      { pattern: 'node_modules/rxjs/**/*.js', included: false, watched: false },
-      { pattern: 'node_modules/rxjs/**/*.js.map', included: false, watched: false },
-
-      // paths loaded via module imports
-      // Angular itself
-      { pattern: 'node_modules/@angular/**/*.js', included: false, watched: true },
-      { pattern: 'node_modules/@angular/**/*.js.map', included: false, watched: false },
-
-      { pattern: 'dist/dev/**/*.js', included: false, watched: true },
-      { pattern: 'dist/dev/**/*.html', included: false, watched: true, served: true },
-      { pattern: 'dist/dev/**/*.css', included: false, watched: true, served: true },
-      { pattern: 'node_modules/systemjs/dist/system-polyfills.js', included: false, watched: false }, // PhantomJS2 (and possibly others) might require it
-
-      { pattern: 'node_modules/angular2-grid/dist/main.js', included: true, watched: true, served: true },
-
-      { pattern: 'node_modules/lodash/lodash.js', included: true, watched: true, served: true },
-      { pattern: 'node_modules/typemoq/dist/typemoq.js', included: true, watched: true, served: true },
-
-      // suppress annoying 404 warnings for resources, images, etc.
-      { pattern: 'dist/dev/assets/**/*', watched: false, included: false, served: true },
-
-      'test-config.js',
-      'dist/dev/app/system-config.js',
-      'test-main.js'
-    ],
-
-    // must go along with above, suppress annoying 404 warnings.
-    proxies: {
-      '/assets/': '/base/dist/dev/assets/'
-    },
-
-    // list of files to exclude
-    exclude: [
-      'node_modules/**/*spec.js'
-    ],
+        // list of files / patterns to load in the browser
+        files: [
+            'node_modules/core-js/client/shim.min.js',
+            'dist/lib/es6-shim.min.js',
+            'dist/lib/system.js',
+            'node_modules/reflect-metadata/Reflect.js',
+            'test-main.js',
+            { pattern: 'node_modules/angular2/*.js', included: false, serve: true, watch: false },
+            { pattern: 'node_modules/angular2/src/**/*.js', included: false, serve: true, watch: false },
+            { pattern: 'dist/**/*.js', included: false, serve: true, watch: true },
+            { pattern: 'rxjs/**/*.js', included: false, serve: true, watch: false },
+            {
+                pattern: 'test/**/*spec.js',
+                included: false,
+                serve: true,
+                watch: true
+            }
+        ],
 
 
-    // preprocess matching files before serving them to the browser
-    // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
-    // preprocessors: {
-    //   'node_modules/angular2-grid/dist/*': [ 'browserify' ]
-    // },
-
-    browserify: {
-      debug: true
-    },
-
-    // test results reporter to use
-    // possible values: 'dots', 'progress'
-    // available reporters: https://npmjs.org/browse/keyword/karma-reporter
-    reporters: ['mocha'],
+        // list of files to exclude
+        exclude: [
+        ],
 
 
-    // web server port
-    port: 9876,
+        // preprocess matching files before serving them to the browser
+        // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
+        preprocessors: {
+            'dist/NgGrid.js': 'coverage'
+        },
 
 
-    // enable / disable colors in the output (reporters and logs)
-    colors: true,
+        // test results reporter to use
+        // possible values: 'dots', 'progress'
+        // available reporters: https://npmjs.org/browse/keyword/karma-reporter
+        reporters: ['progress', 'coverage'],
 
 
-    // level of logging
-    // possible values: config.LOG_DISABLE || config.LOG_ERROR || config.LOG_WARN || config.LOG_INFO || config.LOG_DEBUG
-    logLevel: config.LOG_INFO,
+        // web server port
+        port: 9876,
 
 
-    // enable / disable watching file and executing tests whenever any file changes
-    autoWatch: true,
+        // enable / disable colors in the output (reporters and logs)
+        colors: true,
 
 
-    // start these browsers
-    // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-    browsers: [
-      'Chrome'
-    ],
+        // level of logging
+        // possible values: config.LOG_DISABLE || config.LOG_ERROR || config.LOG_WARN || config.LOG_INFO || config.LOG_DEBUG
+        logLevel: config.LOG_INFO,
 
 
-    customLaunchers: {
-      Chrome_travis_ci: {
-        base: 'Chrome',
-        flags: ['--no-sandbox']
-      }
-    },
+        // enable / disable watching file and executing tests whenever any file changes
+        autoWatch: true,
 
-    // Continuous Integration mode
-    // if true, Karma captures browsers, runs the tests and exits
-    singleRun: false,
 
-    // Passing command line arguments to tests
-    client: {
-      files:  argv.files ? minimatch.makeRe(argv.files).source : null
-    }
-  });
+        // start these browsers
+        // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
+        browsers: ['PhantomJS'],
 
-  if (process.env.APPVEYOR) {
-    config.browsers = ['IE'];
-    config.singleRun = true;
-    config.browserNoActivityTimeout = 90000; // Note: default value (10000) is not enough
-  }
 
-  if (process.env.TRAVIS || process.env.CIRCLECI) {
-    config.browsers = ['Chrome_travis_ci'];
-    config.singleRun = true;
-    config.browserNoActivityTimeout = 90000;
-  }
-};
+        // Continuous Integration mode
+        // if true, Karma captures browsers, runs the tests and exits
+        singleRun: false,
+
+        plugins: [
+            'karma-jasmine',
+            'karma-coverage',
+            'karma-phantomjs-launcher'
+        ]
+    })
+}
