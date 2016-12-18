@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { ComponentDetails } from '../../../../widgets-grid/component-details.model';
+import { ComponentDetails } from '../../../../src/widgets-grid/component-details.model';
 
 @Injectable()
 export class WidgetsDetailsService {

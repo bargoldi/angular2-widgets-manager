@@ -1,6 +1,6 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
-import { ComponentDetails } from '../../../../widgets-grid/component-details.model';
+import { ComponentDetails } from '../../../../src/widgets-grid/component-details.model';
 
 @Pipe({name: 'widgets'})
 export class WidgetsPipe implements PipeTransform {

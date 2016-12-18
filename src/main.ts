@@ -1,3 +1,3 @@
-export * from './widgets-grid/component-details.model';
-export * from './widgets-grid/component-details.model';
-export * from './widgets-grid/component-details.model';
+export * from './component-factory/component-factory.module';
+export * from './widgets-grid/widgets-grid.module';
+export * from './widgets-manager.module';

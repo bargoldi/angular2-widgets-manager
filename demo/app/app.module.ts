@@ -5,10 +5,10 @@ import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 import { SharedModule } from './shared/shared.module';
-import { WidgetsManagerModule } from '../../widgets-manager.module';
+import { WidgetsManagerModule } from '../../src/widgets-manager.module';
 import { WidgetComponentsModule } from './demo/widgets/widget-components.module';
-import { WidgetsManagerService } from '../../widgets-manager.service';
-import {WidgetsPipeModule} from './demo/widgets-pipe/widgets-pipe.module';
+import { WidgetsManagerService } from '../../src/widgets-manager.service';
+import { WidgetsPipeModule } from './demo/widgets-pipe/widgets-pipe.module';
 
 @NgModule({
   imports: [BrowserModule, HttpModule, SharedModule.forRoot(), WidgetsManagerModule.forRoot(), WidgetsPipeModule, WidgetComponentsModule.forRoot()],

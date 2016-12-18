@@ -9,8 +9,8 @@ import { ComponentDetails } from './component-details.model';
 @Component({
   moduleId: module.id,
   selector: 'widgets-grid',
-  templateUrl: 'widgets-grid.component.html',
-  styleUrls: ['widgets-grid.component.css']
+  templateUrl: './widgets-grid.component.html',
+  styleUrls: ['./widgets-grid.component.css']
 })
 export class WidgetsGridComponent implements OnInit {
   /**
