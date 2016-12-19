@@ -30,7 +30,7 @@ var PATHS = {
     },
     testTypings: [
         'dist/dts/*.d.ts'
-    ],
+    ]
 };
 
 gulp.task('clean', ['clean-package', 'clean-demo']);
@@ -50,15 +50,15 @@ gulp.task('build-package', ['clean-package'], function () {
 });
 
 gulp.task('html-package', function () {
-    return gulp.src(PATHS.package.html).pipe(gulp.dest('dist/aot'));
+    return gulp.src(PATHS.package.html).pipe(gulp.dest('dist'));
 });
 
 gulp.task('css-package', function () {
-    return gulp.src(PATHS.package.css).pipe(gulp.dest('dist/aot'));
+    return gulp.src(PATHS.package.css).pipe(gulp.dest('dist'));
 });
 
 gulp.task('ngc-package', function (done) {
-    exec(path.join("node_modules", ".bin", "ngc") + ' -p tsconfig.aot.json', function (err, stdout, stderr) {
+    return exec(path.join("node_modules", ".bin", "ngc") + ' -p tsconfig.aot.json', function (err, stdout, stderr) {
         if (stdout) console.log(stdout);
         if (stderr) console.error(stderr);
         done(err);
@@ -69,20 +69,20 @@ gulp.task('clean-demo', function (done) {
     return del(['dist-demo'], done);
 });
 
-gulp.task('build-demo', ['clean-demo'], function () {
+gulp.task('build-demo', ['clean-demo', 'build-package'], function () {
     return gulp.start('libs-demo', 'html-demo', 'css-demo', 'ts-demo')
 });
 
 gulp.task('libs-demo', function () {
-    return gulp.src('node_modules').pipe(symlink('dist-demo/node_modules', {force: true}));
+    return gulp.src(['node_modules', 'dist']).pipe(symlink(['dist-demo/node_modules', 'dist-demo/src'], {force: true}));
 });
 
 gulp.task('html-demo', function () {
-    return gulp.src(PATHS.demo.html).pipe(gulp.dest('dist-demo'));
+    return gulp.src(PATHS.demo.html).pipe(gulp.dest('dist-demo/demo'));
 });
 
 gulp.task('css-demo', function () {
-    return gulp.src(PATHS.demo.css).pipe(gulp.dest('dist-demo'));
+    return gulp.src(PATHS.demo.css).pipe(gulp.dest('dist-demo/demo'));
 });
 
 gulp.task('ts-demo', function () {
@@ -91,8 +91,8 @@ gulp.task('ts-demo', function () {
         .pipe(tsProject());
 
     return merge([
-        tsResult.js.pipe(sourcemaps.write()).pipe(gulp.dest(path.join('dist-demo', 'js'))),
-        tsResult.dts.pipe(gulp.dest(path.join('dist-demo', 'dts')))
+        tsResult.js.pipe(sourcemaps.write()).pipe(gulp.dest(path.join('dist-demo/demo'))),
+        tsResult.dts.pipe(gulp.dest(path.join('dist-demo/demo', 'dts')))
     ]);
 });
 

@@ -1,46 +1,47 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <base href="<%= APP_BASE %>">
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title><%= APP_TITLE %></title>
-  <meta name="description" content="">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!-- inject:css -->
-  <!-- endinject -->
+    <title>Angular 2 Widgets Manager</title>
+    <script src="/node_modules/core-js/client/shim.min.js"></script>
+    <script src="/node_modules/zone.js/dist/zone.js"></script>
+    <script src="/node_modules/reflect-metadata/Reflect.js"></script>
+    <script src="/node_modules/systemjs/dist/system.src.js"></script>
 </head>
 <body>
-
-  <sd-app>Loading...</sd-app>
-
-  <script>
-  // Fixes undefined module function in SystemJS bundle
-  function module() {}
-  </script>
-
-  <!-- shims:js -->
-  <!-- endinject -->
-
-  <% if (BUILD_TYPE === 'dev') { %>
-  <script src="<%= APP_BASE %>app/system-config.js"></script>
-  <% } %>
-
-  <!-- libs:js -->
-  <!-- endinject -->
-
-  <!-- inject:js -->
-  <!-- endinject -->
-
-  <% if (BUILD_TYPE === 'dev') { %>
-  <script>
-  System.import('<%= BOOTSTRAP_MODULE %>')
-    .catch(function (e) {
-      console.error(e.stack || e,
-        'Not expecting this error? Report it at https://github.com/mgechev/angular-seed/issues');
-    });
-  </script>
-  <% } %>
-
+<my-app>Loading...</my-app>
+<script>
+    (function () {
+        System.config({
+            defaultJSExtensions: true,
+            packages: {
+                '@angular/common': {main: 'bundles/common.umd.js', defaultExtension: 'js'},
+                '@angular/core': {main: 'bundles/core.umd.js', defaultExtension: 'js'},
+                '@angular/platform-browser-dynamic': {
+                    main: 'bundles/platform-browser-dynamic.umd.js',
+                    defaultExtension: 'js'
+                },
+                '@angular/platform-browser': {main: 'bundles/platform-browser.umd.js', defaultExtension: 'js'},
+                '@angular/compiler': {main: 'bundles/compiler.umd.js', defaultExtension: 'js'},
+                '@angular/forms': {main: 'bundles/forms.umd.js', defaultExtension: 'js'},
+                '@angular/http': {main: 'bundles/http.umd.js', defaultExtension: 'js'},
+                '@angular/router': {main: 'bundles/router.umd.js', defaultExtension: 'js'},
+                'rxjs': {defaultExtension: 'js'},
+                'app': {main: 'main', defaultExtension: 'js'},
+                'angular2-grid': {main: 'dist/main.js', defaultExtension: 'js'},
+                'ng2-widgets-manager': {main: 'aot/main.js', defaultExtension: 'js'}
+            },
+            map: {
+                '@angular': '/node_modules/@angular',
+                'rxjs': '/node_modules/rxjs',
+                'main': 'js',
+                'ng2-widgets-manager': '/node_modules/',
+                'angular2-grid': '/node_modules/angular2-grid'
+            }
+        });
+        System.import('app').catch(function (err) {
+            console.error(err);
+        });
+    })();
+</script>
 </body>
 </html>

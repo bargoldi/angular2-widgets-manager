@@ -9,7 +9,7 @@
     "noImplicitAny": false,
     "declaration": true,
     "rootDir": "./src",
-    "outDir": "./dist/aot",
+    "outDir": "./dist",
     "typeRoots": [
       "node_modules/@types"
     ],
