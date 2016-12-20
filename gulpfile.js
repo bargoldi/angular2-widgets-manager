@@ -69,12 +69,16 @@ gulp.task('clean-demo', function (done) {
     return del(['dist-demo'], done);
 });
 
-gulp.task('build-demo', ['clean-demo', 'build-package'], function () {
-    return gulp.start('libs-demo', 'html-demo', 'css-demo', 'ts-demo')
+gulp.task('build-demo', ['clean-demo'], function (callback) {
+    runSequence('build-package', ['libs-demo', 'html-demo', 'css-demo', 'ts-demo'], 'inject-package-to-demo', callback);
+});
+
+gulp.task('inject-package-to-demo', function () {
+    return gulp.src(['dist']).pipe(symlink(['dist-demo/src'], {force: true}));
 });
 
 gulp.task('libs-demo', function () {
-    return gulp.src(['node_modules', 'dist']).pipe(symlink(['dist-demo/node_modules', 'dist-demo/src'], {force: true}));
+    return gulp.src(['node_modules']).pipe(symlink(['dist-demo/node_modules'], {force: true}));
 });
 
 gulp.task('html-demo', function () {
@@ -131,10 +135,19 @@ gulp.task('test-watch', ['test-build'], function (done) {
     gulp.watch([PATHS.package.test], [tasks.testBuild]);
 });
 
-gulp.task('watch', ['build'], function () {
-    gulp.watch(PATHS.package.ts, ['ts-package']);
+gulp.task('watch', ['watch-package', 'watch-demo'], function () {
+});
+
+gulp.task('watch-package', ['build-package'], function () {
+    gulp.watch(PATHS.package.ts, ['ngc-package']);
     gulp.watch(PATHS.package.html, ['html-package']);
     gulp.watch(PATHS.package.css, ['css-package']);
+});
+
+gulp.task('watch-demo', ['build-demo'], function () {
+    gulp.watch(PATHS.demo.ts, ['ts-demo', 'inject-package-to-demo']);
+    gulp.watch(PATHS.demo.html, ['html-demo', 'inject-package-to-demo']);
+    gulp.watch(PATHS.demo.css, ['css-demo', 'inject-package-to-demo']);
 });
 
 gulp.task('default', function () {
