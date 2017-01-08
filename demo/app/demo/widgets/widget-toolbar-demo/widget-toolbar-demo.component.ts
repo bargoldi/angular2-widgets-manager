@@ -8,7 +8,7 @@ import { WidgetsDetailsService } from '../../widgets-details-service/widgets-det
 @Component({
   selector: 'widget-toolbar-demo',
   templateUrl: 'widget-toolbar-demo.component.html',
-  styleUrls: ['widget-toolbar-demo.component.css'],
+  styleUrls: ['widget-toolbar-demo.component.css']
 })
 export class WidgetToolbarDemoComponent {
   @Input() id: string|number;
