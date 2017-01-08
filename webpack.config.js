@@ -1,7 +1,1 @@
-module.exports = {
-    entry: './src/main.js',
-    output: {
-        path: './bin',
-        filename: 'app.bundle.js'
-    }
-};
+module.exports = require('./config/webpack.dev.js');

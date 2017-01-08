@@ -8,9 +8,8 @@ import { SharedWidgetService } from './demo/widgets/shared-widget.service';
  * This class represents the main application component.
  */
 @Component({
-  moduleId: module.id,
   selector: 'sd-app',
-  templateUrl: './app.component.html',
+  templateUrl: 'app.component.html',
   providers: [WidgetsDetailsService, SharedWidgetService]
 })
 export class AppComponent implements OnInit {

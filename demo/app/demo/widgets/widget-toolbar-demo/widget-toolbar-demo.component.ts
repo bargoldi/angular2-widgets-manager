@@ -6,7 +6,6 @@ import { WidgetsDetailsService } from '../../widgets-details-service/widgets-det
  * This class represents the widgets toolbar component used for demo.
  */
 @Component({
-  moduleId: module.id,
   selector: 'widget-toolbar-demo',
   templateUrl: 'widget-toolbar-demo.component.html',
   styleUrls: ['widget-toolbar-demo.component.css'],

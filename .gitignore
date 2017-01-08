@@ -36,7 +36,7 @@ ts-node
 .typingsrc
 
 #IDE configuration files
-.idea
+.idea/
 *.iml
 
 /tools/**/*.js
