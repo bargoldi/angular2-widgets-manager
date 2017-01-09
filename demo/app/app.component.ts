@@ -8,32 +8,32 @@ import { SharedWidgetService } from './demo/widgets/shared-widget.service';
  * This class represents the main application component.
  */
 @Component({
-  selector: 'sd-app',
-  templateUrl: 'app.component.html',
-  providers: [WidgetsDetailsService, SharedWidgetService]
+	selector: 'wm-app',
+	templateUrl: 'app.component.html',
+	providers: [WidgetsDetailsService, SharedWidgetService]
 })
 export class AppComponent implements OnInit {
-  gridConfig = <NgGridConfig>{margins: [2], cascade: 'left', max_rows: 2};
+	gridConfig = <NgGridConfig>{margins: [2], cascade: 'left', max_rows: 2};
 
-  constructor(public widgetsDemoService: WidgetsDetailsService, public sharedWidgetsService: SharedWidgetService) {
+	constructor(public widgetsDemoService:WidgetsDetailsService, public sharedWidgetsService:SharedWidgetService) {
 
-    setTimeout(()=> {
-      sharedWidgetsService.students.pop();
-      console.log('Removed a student after 5 sec. to show shared service hierarchy');
-    }, 5000);
-  }
+		setTimeout(()=> {
+			sharedWidgetsService.students.pop();
+			console.log('Removed a student after 5 sec. to show shared service hierarchy');
+		}, 5000);
+	}
 
-  ngOnInit(): void {
-  }
+	ngOnInit():void {
+	}
 
-  doSomethingOnDragStart(something: any) {
-    console.log(something);
-  }
+	doSomethingOnDragStart(something:any) {
+		console.log(something);
+	}
 
-  toggleGrid() {
-    this.gridConfig.draggable = !this.gridConfig.draggable;
-    this.gridConfig.resizable = !this.gridConfig.resizable;
+	toggleGrid() {
+		this.gridConfig.draggable = !this.gridConfig.draggable;
+		this.gridConfig.resizable = !this.gridConfig.resizable;
 
-    console.log(this.widgetsDemoService.componentsDetails);
-  }
+		console.log(this.widgetsDemoService.componentsDetails);
+	}
 }
