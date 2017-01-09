@@ -1,36 +1,37 @@
-var root = require('./root-helper');
+var webpackConfig = require('./webpack.test');
 
-module.exports = {
-    devtool: 'inline-source-map',
+module.exports = function (config) {
+    var _config = {
+        basePath: '',
 
-    resolve: {
-        extensions: ['.ts', '.js']
-    },
+        frameworks: ['jasmine'],
 
-    module: {
-        loaders: [
-            {
-                test: /\.ts$/,
-                loaders: ['awesome-typescript-loader', 'angular2-template-loader']
-            },
-            {
-                test: /\.html$/,
-                loader: 'html'
-            },
-            {
-                test: /\.(png|jpe?g|gif|svg|woff|woff2|ttf|eot|ico)$/,
-                loader: 'null'
-            },
-            {
-                test: /\.css$/,
-                exclude: root.root('src', 'app'),
-                loader: 'null'
-            },
-            {
-                test: /\.css$/,
-                include: root.root('src', 'app'),
-                loader: 'raw'
-            }
-        ]
-    }
+        files: [
+            {pattern: './config/karma-test-shim.js', watched: false}
+        ],
+
+        preprocessors: {
+            './config/karma-test-shim.js': ['webpack', 'sourcemap']
+        },
+
+        webpack: webpackConfig,
+
+        webpackMiddleware: {
+            stats: 'errors-only'
+        },
+
+        webpackServer: {
+            noInfo: true
+        },
+
+        reporters: ['progress'],
+        port: 9876,
+        colors: true,
+        logLevel: config.LOG_INFO,
+        autoWatch: false,
+        browsers: ['PhantomJS'],
+        singleRun: true
+    };
+
+    config.set(_config);
 };
