@@ -1,10 +1,12 @@
+//import { beforeEach, describe, expect } from '@types/jasmine';
+import {} from 'jasmine';
 import { Component } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import {
-  async
+	async
 } from '@angular/core/testing';
 import {
-  BaseRequestOptions
+	BaseRequestOptions
 } from '@angular/http';
 import { CommonModule } from '@angular/common';
 
@@ -14,54 +16,52 @@ import { WidgetsGridComponent } from './widgets-grid.component';
 import { WidgetsGridModule } from './widgets-grid.module';
 import { ComponentDetails } from "./component-details.model";
 
-export function main() {
-  describe('WidgetsGridComponent', () => {
-    beforeEach(() => {
-      TestBed.configureTestingModule({
-        imports: [CommonModule, WidgetsGridModule],
-        declarations: [TestComponent],
-        providers: [
-          BaseRequestOptions,
-          MockBackend,
-          {
-            deps: [MockBackend, BaseRequestOptions]
-          },
-        ]
-      });
-    });
+describe('WidgetsGridComponent', () => {
+	beforeEach(() => {
+		TestBed.configureTestingModule({
+			imports: [CommonModule, WidgetsGridModule],
+			declarations: [TestComponent],
+			//providers: [
+			//	BaseRequestOptions,
+			//	MockBackend,
+			//	{
+			//		deps: [BaseRequestOptions, MockBackend]
+			//	},
+			//]
+		});
+	});
 
-    it('Should work', async(() => {
-      TestBed
-        .compileComponents()
-        .then(() => {
-          let fixture = TestBed.createComponent(TestComponent);
-          let widgetsGridComponent: WidgetsGridComponent = fixture.debugElement.children[0].componentInstance;
-          let widgetsGridDOMElement = fixture.debugElement.children[0].nativeElement;
+	it('Should work', async(() => {
+		TestBed
+			.compileComponents()
+			.then(() => {
+				let fixture = TestBed.createComponent(TestComponent);
+				let widgetsGridComponent:WidgetsGridComponent = fixture.debugElement.children[0].componentInstance;
+				let widgetsGridDOMElement = fixture.debugElement.children[0].nativeElement;
 
-          expect(widgetsGridDOMElement.querySelectorAll('li').length).toEqual(0);
+				expect(widgetsGridDOMElement.querySelectorAll('li').length).toEqual(0);
 
-          widgetsGridComponent.componentsDetails = [<ComponentDetails>{
-            gridItemConfig: {
-              sizex: 2,
-              sizey: 1,
-              fixed: true
-            },
-            id: 1,
-            name: 'Demo1',
-            html: '<widget-1></widget-1>'
-          }];
+				widgetsGridComponent.componentsDetails = [<ComponentDetails>{
+					gridItemConfig: {
+						sizex: 2,
+						sizey: 1,
+						fixed: true
+					},
+					id: 1,
+					name: 'Demo1',
+					html: '<widget-1></widget-1>'
+				}];
 
-          fixture.detectChanges();
+				fixture.detectChanges();
 
-          expect(widgetsGridDOMElement.querySelectorAll('component-factory').length).toEqual(1);
-        });
-    }));
-  });
-}
+				expect(widgetsGridDOMElement.querySelectorAll('component-factory').length).toEqual(1);
+			});
+	}));
+});
 
 @Component({
-  selector: 'test-cmp',
-  template: '<widgets-grid></widgets-grid>'
+	selector: 'test-cmp',
+	template: '<widgets-grid></widgets-grid>'
 })
 class TestComponent {
 }
