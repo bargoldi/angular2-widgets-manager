@@ -1,45 +1,32 @@
-//import { beforeEach, describe, expect } from '@types/jasmine';
-import {} from 'jasmine';
-import { Component } from '@angular/core';
-import { TestBed } from '@angular/core/testing';
-import {
-	async
-} from '@angular/core/testing';
-import {
-	BaseRequestOptions
-} from '@angular/http';
+import { Component, NgModule } from '@angular/core';
+import { TestBed, async } from '@angular/core/testing';
 import { CommonModule } from '@angular/common';
+import {} from 'jasmine';
+import * as TypeMoq from 'typemoq';
 
-import { MockBackend } from '@angular/http/testing';
 import { WidgetsGridComponent } from './widgets-grid.component';
-
+import { WidgetsManagerService } from '../widgets-manager.service';
 import { WidgetsGridModule } from './widgets-grid.module';
 import { ComponentDetails } from "./component-details.model";
 
 describe('WidgetsGridComponent', () => {
-	beforeEach(() => {
-		TestBed.configureTestingModule({
-			imports: [CommonModule, WidgetsGridModule],
-			declarations: [TestComponent],
-			//providers: [
-			//	BaseRequestOptions,
-			//	MockBackend,
-			//	{
-			//		deps: [BaseRequestOptions, MockBackend]
-			//	},
-			//]
+	describe('WidgetsGridComponent components insertion', () => {
+		beforeEach(() => {
+			TestBed.configureTestingModule({
+				imports: [WidgetsGridModule],
+				declarations: [TestComponent],
+			});
 		});
-	});
 
-	it('Should work', async(() => {
-		TestBed
-			.compileComponents()
-			.then(() => {
+		it('Should handle 1 simple component', async(() => {
+			TestBed.compileComponents().then(() => {
+				// Arrange
 				let fixture = TestBed.createComponent(TestComponent);
-				let widgetsGridComponent:WidgetsGridComponent = fixture.debugElement.children[0].componentInstance;
+				let widgetsGridComponent: WidgetsGridComponent = fixture.debugElement.children[0].componentInstance;
 				let widgetsGridDOMElement = fixture.debugElement.children[0].nativeElement;
 
-				expect(widgetsGridDOMElement.querySelectorAll('li').length).toEqual(0);
+				let someModule: TypeMoq.IMock<NgModule> = TypeMoq.Mock.ofType(NgModule);
+				WidgetsManagerService.provideWidgetsModule(someModule);
 
 				widgetsGridComponent.componentsDetails = [<ComponentDetails>{
 					gridItemConfig: {
@@ -49,14 +36,19 @@ describe('WidgetsGridComponent', () => {
 					},
 					id: 1,
 					name: 'Demo1',
-					html: '<widget-1></widget-1>'
+					html: '<div>Test</div>'
 				}];
 
+				// Act
 				fixture.detectChanges();
 
-				expect(widgetsGridDOMElement.querySelectorAll('component-factory').length).toEqual(1);
+				// Assert
+				expect(widgetsGridDOMElement.querySelectorAll('component-factory').length).toEqual(0);
+
+				WidgetsManagerService.widgetsModule = undefined;
 			});
-	}));
+		}));
+	});
 });
 
 @Component({
