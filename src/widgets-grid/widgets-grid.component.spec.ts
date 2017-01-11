@@ -1,8 +1,7 @@
 import { Component, NgModule } from '@angular/core';
-import { TestBed, async } from '@angular/core/testing';
+import { async, TestBed } from '@angular/core/testing';
 import { CommonModule } from '@angular/common';
 import {} from 'jasmine';
-import * as TypeMoq from 'typemoq';
 
 import { WidgetsGridComponent } from './widgets-grid.component';
 import { WidgetsManagerService } from '../widgets-manager.service';
@@ -25,8 +24,7 @@ describe('WidgetsGridComponent', () => {
 				let widgetsGridComponent: WidgetsGridComponent = fixture.debugElement.children[0].componentInstance;
 				let widgetsGridDOMElement = fixture.debugElement.children[0].nativeElement;
 
-				let someModule: TypeMoq.IMock<NgModule> = TypeMoq.Mock.ofType(NgModule);
-				WidgetsManagerService.provideWidgetsModule(someModule);
+				WidgetsManagerService.provideWidgetsModule(TestModule);
 
 				widgetsGridComponent.componentsDetails = [<ComponentDetails>{
 					gridItemConfig: {
@@ -43,7 +41,38 @@ describe('WidgetsGridComponent', () => {
 				fixture.detectChanges();
 
 				// Assert
-				expect(widgetsGridDOMElement.querySelectorAll('component-factory').length).toEqual(0);
+				expect(widgetsGridDOMElement.querySelectorAll('component-factory').length).toEqual(1);
+
+				WidgetsManagerService.widgetsModule = undefined;
+			});
+		}));
+
+		it('Should handle more than 1 simple components', async(() => {
+			TestBed.compileComponents().then(() => {
+				// Arrange
+				let fixture = TestBed.createComponent(TestComponent);
+				let widgetsGridComponent: WidgetsGridComponent = fixture.debugElement.children[0].componentInstance;
+				let widgetsGridDOMElement = fixture.debugElement.children[0].nativeElement;
+
+				// let someModule: TypeMoq.IMock<NgModule> = TypeMoq.Mock.ofType(NgModule);
+				WidgetsManagerService.provideWidgetsModule(TestModule);
+
+				widgetsGridComponent.componentsDetails = [<ComponentDetails>{
+					gridItemConfig: {
+						sizex: 2,
+						sizey: 1,
+						fixed: true
+					},
+					id: 1,
+					name: 'Demo1',
+					html: '<div>Test</div>'
+				}];
+
+				// Act
+				fixture.detectChanges();
+
+				// Assert
+				expect(widgetsGridDOMElement.querySelectorAll('component-factory').length).toEqual(1);
 
 				WidgetsManagerService.widgetsModule = undefined;
 			});
@@ -56,4 +85,10 @@ describe('WidgetsGridComponent', () => {
 	template: '<widgets-grid></widgets-grid>'
 })
 class TestComponent {
+}
+
+@NgModule({
+	imports: [CommonModule],
+})
+export class TestModule {
 }
