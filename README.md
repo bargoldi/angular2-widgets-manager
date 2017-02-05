@@ -12,7 +12,7 @@ $ cd project_directory
 $ npm install
 ```
 ## Usage
-In order to start a lite-server, use the command:
+In order to run a webpack server, use the command:
 ```bash
 $ npm start
 ```
@@ -23,8 +23,48 @@ $ npm test
 
 ## Directory Structure
 ```
----- demo/
----- src/
----- package.json
+├───config
+│       karma.conf.js
+│       root-helper.js
+│       webpack.common.js
+│       webpack.dev.js
+│       webpack.test.js
+│
+├───demo
+│   │   index.html
+│   │   polyfills.ts
+│   │   tsconfig.json
+│   │   vendor.ts
+│   │
+│   ├───app
+│   │   │   app.component.css
+│   │   │   app.component.html
+│   │   │   app.component.ts
+│   │   │   app.module.ts
+│   │   │   main.ts
+│   │   │
+│   │   └───shared
+│   │           shared.module.ts
+│   │
+│   ├───assets
+│   │   │   data.json
+│   │   │
+│   │   └───svg
+│   │           more.svg
+│   │
+│   └───css
+│           main.css
+│
+└───src
+│       main.ts
+│   .gitignore
+│   .npmignore
+│   gulpfile.js
+│   karma.conf.js
+│   package.json
+│   README.md
+│   tsconfig.aot.json
+│   tsconfig.json
+│   webpack.config.js
 ```
 ## Configuration
