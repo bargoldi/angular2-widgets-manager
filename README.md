@@ -1,70 +1,38 @@
-# ng2-package-starter
-Angular2 package starter - a basic seed for writing and publishing an Angular2 package.
+# angular2-widgets-manager
+Angular2 widgets manager - grid possibility to DnD dynamic components.
 
-## Getting started
-```bash
-$ git clone https://github.com/bargoldi/ng2-package-starter
-```
-```bash
-$ cd project_directory
-```
-```bash
-$ npm install
-```
 ## Usage
-In order to run a webpack server, use the command:
+First, installation:
 ```bash
-$ npm start
+$ npm install angular2-widgets-manager
 ```
-## Running tests
+Now, in order to use it you will probably need to configure it as UMD (for SystemJS/Webpack).
+So don't forget to include the main file:
 ```bash
-$ npm test
+node_modules/angular2-widgets-manager/dist/main.js
 ```
 
-## Directory Structure
-```
-├───config
-│       karma.conf.js
-│       root-helper.js
-│       webpack.common.js
-│       webpack.dev.js
-│       webpack.test.js
-│
-├───demo
-│   │   index.html
-│   │   polyfills.ts
-│   │   tsconfig.json
-│   │   vendor.ts
-│   │
-│   ├───app
-│   │   │   app.component.css
-│   │   │   app.component.html
-│   │   │   app.component.ts
-│   │   │   app.module.ts
-│   │   │   main.ts
-│   │   │
-│   │   └───shared
-│   │           shared.module.ts
-│   │
-│   ├───assets
-│   │   │   data.json
-│   │   │
-│   │   └───svg
-│   │           more.svg
-│   │
-│   └───css
-│           main.css
-│
-└───src
-│       main.ts
-│   .gitignore
-│   .npmignore
-│   gulpfile.js
-│   karma.conf.js
-│   package.json
-│   README.md
-│   tsconfig.aot.json
-│   tsconfig.json
-│   webpack.config.js
-```
+Here's a code example to add it in your AppModule:
+```bash
+import { NgModule } from '@angular/core';
+import { WidgetsManagerModule } from '../../src/main';
+import { WidgetsManagerService } from '../../src/widgets-manager.service';
+
+@NgModule({
+  imports: [WidgetsManagerModule.forRoot(),],
+  declarations: [AppComponent],
+  providers: [{
+    provide: APP_BASE_HREF,
+    useValue: '<%= APP_BASE %>'
+  }],
+  bootstrap: [AppComponent]
+})
+
+export class AppModule {
+  constructor() {
+    WidgetsManagerService.provideWidgetsModule(WidgetComponentsModule.forRoot());
+  }
+}
+
+Now
 ## Configuration
