@@ -55,4 +55,9 @@ interface ComponentDetails {
 ```
 You can find `NgGridItemConfig` in [angular2-grid][angular2-grid]
 
+## Credits
+* The library was generated with [angular2-webpack-library-seed][angular2-webpack-library-seed]
+* The library is based on [angular2-grid][angular2-grid]
+
+[angular2-webpack-library-seed]: https://github.com/bargoldi/angular2-webpack-library-seed
 [angular2-grid]: https://github.com/BTMorton/angular2-grid
