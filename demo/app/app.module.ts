@@ -19,7 +19,6 @@ import { WidgetsPipeModule } from './demo/widgets-pipe/widgets-pipe.module';
   }],
   bootstrap: [AppComponent]
 })
-
 export class AppModule {
   constructor() {
     WidgetsManagerService.provideWidgetsModule(WidgetComponentsModule.forRoot());

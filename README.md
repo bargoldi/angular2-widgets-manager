@@ -1,5 +1,5 @@
 # angular2-widgets-manager
-Angular2 widgets manager - grid possibility to DnD dynamic components.
+Angular2 dynamic components grid, based on widgets concept.
 
 ## Usage
 First, installation:
@@ -19,20 +19,40 @@ import { WidgetsManagerModule } from '../../src/main';
 import { WidgetsManagerService } from '../../src/widgets-manager.service';
 
 @NgModule({
-  imports: [WidgetsManagerModule.forRoot(),],
+  imports: [WidgetsManagerModule.forRoot()],
   declarations: [AppComponent],
-  providers: [{
-    provide: APP_BASE_HREF,
-    useValue: '<%= APP_BASE %>'
-  }],
   bootstrap: [AppComponent]
 })
-
 export class AppModule {
   constructor() {
+    // This line is important as it passes YOUR module, the one
+    // from which the manager will get the widgets components
     WidgetsManagerService.provideWidgetsModule(WidgetComponentsModule.forRoot());
   }
 }
+```
 
-Now
+```bash
+<widgets-grid (onDragStart)="doSomethingOnDragStart($event)"
+              [componentsDetails]="componentsDetails"
+              [gridConfig]="gridConfig"></widgets-grid>
+```
+
 ## Configuration
+### Grid configuration
+
+You can find `NgGridConfig` in [angular2-grid][angular2-grid]
+
+### Widgets configuration - Component Details
+
+```bash
+interface ComponentDetails {
+    id?: string | number;
+    name: string;
+    html: string;
+    gridItemConfig: NgGridItemConfig;
+}
+```
+You can find `NgGridItemConfig` in [angular2-grid][angular2-grid]
+
+[angular2-grid]: https://github.com/BTMorton/angular2-grid
