@@ -1,0 +1,13 @@
+<div class="grid" [ngGrid]="gridConfig">
+  <div *ngFor="let componentDetails of componentsDetails" class="grid-item"
+       [ngGridItem]="componentDetails.gridItemConfig"
+       (onDragStart)="onDragStartHandler($event)"
+       (onDrag)="onDragHandler($event)"
+       (onDragStop)="onDragStopHandler($event)"
+       (onResizeStart)="onResizeStartHandler($event)"
+       (onResize)="onResizeHandler($event)"
+       (onResizeStop)="onResizeStopHandler($event)"
+       (onItemChange)="onItemChangeHandler($event)">
+    <component-factory [html]="componentDetails.html"></component-factory>
+  </div>
+</div>

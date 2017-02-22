@@ -36,7 +36,7 @@ ts-node
 .typingsrc
 
 #IDE configuration files
-.idea
+.idea/
 *.iml
 
 /tools/**/*.js
@@ -46,9 +46,6 @@ docs
 lib
 test
 tmp
-
-gulpfile.js
-gulpfile.js.map
 
 # OS X trash files
 .DS_Store
