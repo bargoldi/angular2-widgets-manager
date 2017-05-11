@@ -13,7 +13,7 @@ node_modules/angular2-widgets-manager/dist/main.js
 ```
 
 Here's a code example to add it in your AppModule:
-```bash
+```typescript
 import { NgModule } from '@angular/core';
 import { WidgetsManagerModule } from '../../src/main';
 import { WidgetsManagerService } from '../../src/widgets-manager.service';
@@ -32,7 +32,7 @@ export class AppModule {
 }
 ```
 
-```bash
+```html
 <widgets-grid (onDragStart)="doSomethingOnDragStart($event)"
               [componentsDetails]="componentsDetails"
               [gridConfig]="gridConfig"></widgets-grid>
