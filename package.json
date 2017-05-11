@@ -1,6 +1,6 @@
 {
   "name": "angular2-widgets-manager",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Angular2 dynamic components grid, based on widgets concept",
   "main": "dist/main.js",
   "typings": "dist/main.d.ts",
