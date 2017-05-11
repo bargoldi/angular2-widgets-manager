@@ -21,7 +21,7 @@ export function createComponentFactory(compiler: Compiler, metadata: Component):
 	let decoratedComponent = Component(metadata)(DynamicComponent);
 
 	if (!WidgetsManagerService.widgetsModule) {
-		throw new Error('NG2-WIDGETS-MANAGER: Widgets module should be provided');
+		throw new Error('ANGULAR2-WIDGETS-MANAGER: Widgets module should be provided');
 	}
 
 	@NgModule({
