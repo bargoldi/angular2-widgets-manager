@@ -25,7 +25,7 @@ export function createComponentFactory(compiler: Compiler, metadata: Component):
 	}
 
 	@NgModule({
-		imports: [CommonModule, RouterModule].concat(WidgetsManagerService.widgetsModule),
+		imports: [CommonModule, RouterModule].concat(<[any]>WidgetsManagerService.widgetsModule),
 		declarations: [decoratedComponent]
 	})
 	class DynamicHtmlModule {
